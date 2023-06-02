@@ -1,0 +1,64 @@
+
+
+
+
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{% endblock title %}about
+
+
+
+{%block main-content %}
+{% include 'includes/alerts.html' %}
+
+{% comment %} <div class="tab-container">
+  <div class="tab-content"> 
+
+    <form method="POST" action="" enctype="multipart/form-data">
+      {% csrf_token %}
+            <br> <br>
+            <select name="you_are" required>
+              <option value="">You Are</option>
+              {% for youare in youare %}
+                <option value="{{ youare.id }}">{{ youare.you_are }}</option>
+              {% endfor %}
+            </select>
+              <br> <br>
+            <input type="submit" value="Next">
+          </form>
+  </div>
+
+</div> {% endcomment %}
+
+
+
+
+<br><br><br><br><br><br><br><br><br><br><br>
+<div class="container"> 
+  
+  <div class="row">
+    <!-- row justify-content-center -->
+    <div class="col-md-6 mx-auto">
+      <form  method="POST" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+       
+          <div class="form-row">
+            <div class="form-group col-md-3">
+              <label for="inputState">You are </label>
+              <select name="you_are"  class="form-control" required>
+                <option value="">You Are</option>
+                {% for youare in youare %}
+                  <option value="{{ youare.id }}">{{ youare.you_are }}</option>
+                {% endfor %}
+              </select>
+            </div>   
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      </div>
+      
+  </div>
+</div>
+<br><br><br><br><br><br><br><br><br><br><br><br><br>
+{%endblock main-content%}
+

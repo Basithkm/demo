@@ -1,0 +1,138 @@
+
+
+
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{% endblock title %}about
+
+
+{%block main-content %}
+{% include 'includes/alerts.html' %}
+
+{% comment %} <div class="image-container">
+	<img src="{% static 'images/pexels-david-kanigan-16574434.jpg' %}" class="img-fluid" alt="your image" width="100%">
+  </div>
+
+<div class="register-tab-container">
+  <div class="tab-content"> 
+    <form name="myForm" onsubmit="return validateForm()" method="post">
+      {% csrf_token %}
+      <input type="text" class="form-control" name="first_name" id="first_name" placeholder="First Name" required><br>
+      <input type="number" class="form-control" name="phone_number" id="phone_number" placeholder="Phone number" required><br>
+      <input type="email" class="form-control"  name="email" id="email" placeholder="email" required><br>
+      <input type="password" class="form-control"  name="password1" id="password1" placeholder="Password" required><br>
+      <input type="password" class="form-control"  name="password2" id="password2" placeholder="Confirm Password" required><br>
+      <input type="submit" class="btn btn-info" >
+    </form>
+
+
+    <div>already an account? <span><a href="{% url 'signin' %}">Login</a></span></div>
+    </div>
+
+   
+  </div>
+
+</div> {% endcomment %}
+
+<br> <br> <br> <br> <br> <br> <br> <br> <br>
+<div class="container">
+  {% include 'includes/alerts.html' %}
+  <div class="row">
+    <!-- row justify-content-center -->
+    <div class="col-md-6 mx-auto">
+      <h1>Registration</h1>
+      <form  method="POST" name="myForm" onsubmit="return validateForm()">
+        {% csrf_token %}
+        <div class="form-row">
+          <div class="form-group col-md-12">
+
+            <label for="inputName">First Name :</label>
+            <input type="text" class="form-control" name="first_name" id="first_name" placeholder="First Name" required>
+            
+            <label for="inputName">Email :</label>
+            <input type="email" class="form-control"  name="email" id="email" placeholder="Email" required>
+            
+            <label for="inputName">Phone Number :</label>
+            <input type="number" class="form-control" name="phone_number" id="phone_number" placeholder="Phone Number" required>
+            
+            <label for="inputName">Password :</label>
+            <input type="password" class="form-control"  name="password1" id="password1" placeholder="Password" required>
+            
+            <label for="inputName">confirm Password :</label>
+            <input type="password" class="form-control"  name="password2" id="password2" placeholder="Confirm Password" required>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Sumbit</button>
+      </form>
+      <div>already an account? <span><a href="{% url 'signin' %}">Login</a></span></div>
+
+
+    </div>
+    
+  </div>
+</div>
+
+
+<br> <br> <br> <br> <br> <br> <br> <br> <br>
+
+
+<script>
+
+{/* <script type="text/javascript"> */}
+  function validateForm() {
+     
+     var name = document.forms["myForm"]["first_name"].value;
+     var phone = document.forms["myForm"]["phone_number"].value;
+     var email = document.forms["myForm"]["email"].value;
+     var password1 = document.forms["myForm"]["password1"].value;
+     var password2 = document.forms["myForm"]["password2"].value;
+
+     // Validate phone number
+     if (phone.length !== 10) {
+         alert("Phone number must be 10 digits long.");
+         return false;
+     }
+
+     // Validate email
+     var emailRegex = /\S+@\S+\.\S+/;
+     if (!emailRegex.test(email)) {
+         alert("Invalid email address.");
+         return false;
+     }
+
+     // Check if email already taken
+     // You'll need to implement this check on the server side
+     if (email === "example@gmail.com") {
+         alert("Email address already taken.");
+         return false;
+     }
+
+     // Validate password
+     if (password1 !== password2) {
+         alert("Passwords do not match.");
+         return false;
+     }
+
+     // Validate password strength
+     var passwordRegex = /^(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z0-9!@#$%^&*]{8,}$/;
+     if (!passwordRegex.test(password1)) {
+         alert("Password must be at least 8 characters long and contain at least one digit and one letter.");
+         return false;
+     }
+
+     return true;
+ }
+
+
+
+</script>
+
+
+{%endblock main-content%}
+
+
+
+
+
+
+

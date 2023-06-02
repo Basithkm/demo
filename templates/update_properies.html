@@ -1,0 +1,212 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{% endblock title %}select Property for sale
+
+{%block main-content %}
+
+<br><br><br><br>
+
+{% include 'includes/alerts.html' %}
+<form method="post" enctype="multipart/form-data">
+
+    {% csrf_token %}
+
+        <label>Title</label>
+        <input type="text" placeholder="Title" name="name" value="{{update.rent_title }}" required>
+        <br> <br>
+        <label for="Property for Rent">Property for Rent:</label>
+        <select name="rent_category" id="rent_category" required>
+          {% for rent_category in rent_category %}
+          {% if rent_category.id == update.rent_category_id %}
+            <option value="{{ rent_category.id }}" selected>{{ rent_category.rent_property_category }}</option>
+            {% else %}  
+            <option value="{{ rent_category.id }}">{{ rent_category.rent_property_category }}</option>
+            {% endif %}
+            {% endfor %}
+        </select>
+        <br>
+
+        
+          <label for="type">Select Type:</label>
+          <select id="type" name="type" required>
+            <option value="">Select Type</option>
+          </select>
+          <br>
+
+        <label for="district">District:</label>
+        <select id="district" name="district">
+          {% for district in districts %}
+          {% if district.id == update.district_id %}
+            <option value="{{ district.id }}" selected>{{ district.district_name }}</option>
+            {% else %}  
+            <option value="{{ district.id }}">{{ district.district_name }}</option>
+            {% endif %}
+            {% endfor %}
+        </select>
+        <br>
+        <label for="city">City:</label>
+        <select id="city" name="city" required>
+          <option value="" selected disabled>Select City</option>
+        </select>
+        <br>
+
+    <label for="propertyName">Property Name:</label>
+    <input type="text" id="propertyName" value="{{update.property_name}}" name="propertyName" required>
+    <br>
+ 
+
+    <label for="furnished">Furnished</label>
+    <select id="furnished" name="furnished" required>
+    <option value="" selected disabled>furnished</option>
+    <option value="yes" {% if update.furnished == "yes"%} selected{% endif %}>Yes</option>
+    <option value="no" {% if update.furnished == "no"%} selected{% endif %}>No</option>
+
+    </select>
+
+    <br>
+    <label for="admin_area">admin_area</label>
+    <select id="admin_area" name="admin_area" required>
+    <option value="" selected disabled>admin_area</option>
+    <option value="yes" {% if update.admin_area == "yes" %} selected{% endif %}>Yes</option>
+    <option value="no" {% if update.admin_area == "no" %} selected{% endif %}>No</option>
+
+
+    </select>
+    <br>
+    <br>
+    <label for="confrence_room">confrence_room</label>
+    <select id="confrence_room" name="confrence_room" required>
+    <option value="" selected disabled>confrence_room</option>
+    <option value="yes" {% if update.confrence_room == "yes" %} selected {% endif %}>Yes</option>
+    <option value="no" {% if update.confrence_room == "no" %} selected{% endif %}>No</option>
+
+    </select>
+    <br>
+
+    
+    <label for="propertySqft">Property Sqft:</label>
+    <input type="number" id="propertySqft" value="{{update.rent_size_in_squrefeet}}" name="propertySqft">
+    <br>
+    <label for="price">Price:</label>
+    <input type="number" id="price" value="{{update.rent_price}}" name="price">
+    <br>
+    <input type="file" class="form-control" name="image" accept="image/*" id="exampleFormControlInput1" required>
+    <br>
+
+
+    
+    <br>
+    <label for="numRooms">Number of Rooms:</label>
+    <select id="numRooms" name="numRooms">
+
+    <option value="1" {% if update.num_of_rooms == "1" %} selected{% endif %}>1</option>
+    <option value="2" {% if update.num_of_rooms == "2" %} selected{% endif %}>2</option>
+    <option value="3" {% if update.num_of_rooms == "3" %} selected{% endif %}>3</option>
+    <option value="4" {% if update.num_of_rooms == "4" %} selected{% endif %}>4</option>
+    <option value="5" {% if update.num_of_rooms == "5" %} selected{% endif %}>5</option>
+
+
+    </select>
+    <br>
+    <label for="numBathrooms">Number of Bathrooms:</label>
+    <select id="numBathrooms" name="numBathrooms">
+        <option value="1" {% if update.num_of_bathrooms == "1" %} selected{% endif %}>1</option>
+        <option value="2" {% if update.num_of_bathrooms == "2" %} selected{% endif %}>2</option>
+        <option value="3" {% if update.num_of_bathrooms == "3" %} selected{% endif %}>3</option>
+        <option value="4" {% if update.num_of_bathrooms == "4" %} selected{% endif %}>4</option>
+        <option value="5" {% if update.num_of_bathrooms == "5" %} selected{% endif %}>5</option>
+    
+    </select>
+    <br>
+    <label for="balcony">Balcony</label>
+    <select id="balcony" name="balcony" required>
+    <option value="" selected disabled>balcony</option>
+    <option value="1" {% if update.balcony == "1" %} selected{% endif %}>1</option>
+    <option value="2" {% if update.balcony == "2" %} selected{% endif %}>2</option>
+    <option value="3" {% if update.balcony == "3" %} selected{% endif %}>3</option>
+    <option value="4" {% if update.balcony == "4" %} selected{% endif %}>4</option>
+    <option value="5" {% if update.balcony == "5" %} selected{% endif %}>5</option>
+
+    </select>
+    <br>
+    
+
+
+    <label for="description">Description:</label>
+    <input type="text" id="description" value="{{update.rent_description}}" name="description" required>
+    <br>
+
+
+  
+    <label for="type_of_soil">Type of soil:</label>
+    <input type="text" id="type_of_soil" value="{{type_of_soil}}" name="type_of_soil" required>
+    <br>
+
+    <br>
+    <label for="property_acre">Property acre:</label>
+    <input type="number" step=0.01 id="property_acre" value="{{update.property_acre}}"  name="property_acre">
+    <br>
+   
+    
+    <br>
+    <label for="amenities">Amenities:</label><br>
+    <input type="checkbox" id="roadFacility" name="amenities" value="roadFacility">
+    <label for="roadFacility">Road Facility</label>
+    <input type="checkbox" id="cctv" name="amenities" value="cctv">
+    <label for="cctv">CCTV</label>
+    <input type="checkbox" id="wifi" name="amenities" value="wifi">
+    <label for="wifi">WiFi</label>
+    <input type="checkbox" id="parking" name="amenities" value="parking">
+    <label for="parking">Parking</label>
+    
+    <input type="submit" value="Submit">
+    
+  </form>
+
+  <script>
+    $(document).ready(function() {
+      // When district dropdown value changes
+      $('#district').on('change', function() {
+        var districtId = $(this).val();
+        // Make an AJAX request to get cities for the selected district
+        $.ajax({
+          url: '/get_cities/', // Replace with your URL for getting cities
+          data: {
+            'district_id': districtId
+          },
+          success: function(data) {
+            // Clear previous options
+            $('#city').empty();
+            // Add options for cities
+            $.each(data, function(key, value) {
+              $('#city').append('<option value="' + key + '">' + value + '</option>');
+            });
+          }
+        });
+      });
+    });
+    </script>
+    <script>
+      $(document).ready(function() {
+      $('#rent_category').on('change', function() {
+        var rent_categoryid = $(this).val();
+        // Make an AJAX request to get cities for the selected district
+        $.ajax({
+          url: '/get_types/', // Replace with your URL for getting cities
+          data: {
+            'rent_category_id': rent_categoryid
+          },
+          success: function(data) {
+            // Clear previous options
+            $('#type').empty();
+            // Add options for cities
+            $.each(data, function(key, value) {
+              $('#type').append('<option value="' + key + '">' + value + '</option>');
+            });
+          }
+        });
+      });
+    });
+   
+    </script>
+{%endblock main-content%}

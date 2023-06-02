@@ -1,0 +1,56 @@
+
+
+
+
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{% endblock title %}about
+{%block main-content %}
+{% include 'includes/alerts.html' %}
+
+{% comment %} <div class="tab-container">
+  <div class="tab-content"> 
+
+        <form method="POST" action="" enctype="multipart/form-data">
+                {% csrf_token %}
+                <label for="agent_name">Agent Name:</label>
+                <input type="text" name="agent_name" id="agent_name" required>
+                <br>
+                <label for="agent_company">Agent Company:</label>
+                <input type="text" name="agent_company" id="agent_company">
+                <br>
+                <input type="submit" value="Submit">
+                </form>
+
+   
+  </div>
+
+</div> {% endcomment %}
+
+
+<br><br><br><br><br><br><br><br><br><br><br>
+<div class="container">
+  <div class="row">
+    <!-- row justify-content-center -->
+    <div class="col-md-6 mx-auto">
+      <form  method="POST" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="inputName">Agent Name:</label>
+            <input type="text" class="form-control" name="agent_name" id="agent_name" placeholder="Agent Name" required>
+          </div>
+          <div class="form-group col-md-12">
+            <label for="inputName">Company Name</label>
+            <input type="text" class="form-control" name="agent_company" id="agent_company" placeholder="Company Name" >
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Sumbit</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<br><br><br><br><br><br><br><br><br><br><br>
+{%endblock main-content%}
+

@@ -1,0 +1,382 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{% endblock title %}about
+
+
+{%block main-content %}
+{% include 'includes/alerts.html' %}
+{% comment %} 
+<div class="tab-container">
+  <div class="tab-content"> 
+
+    
+{% if forms %}
+
+sale_property_category
+
+{{forms.rent_property_category}}<br>
+{{forms.reny_type_category}}<br>
+{{forms.rent_title}}<br>
+{{forms.property_name}}<br>
+{{forms.rent_type}}<br>
+
+{% if forms.you_are %}
+{{forms.you_are}}<br>
+{% endif %}
+
+
+{% if forms.agent_name %}
+{{forms.agent_name}}<br>
+{% endif %}
+
+{% if forms.agent_company %}
+{{forms.agent_company}}<br>
+{% endif %}
+
+
+{% if forms.daily_rent %}
+{{forms.daily_rent}}<br>
+{% endif %}
+
+
+{% if forms.monthly_rent %}
+{{forms.monthly_rent}}<br>
+{% endif %}
+
+
+{% if forms.lease_rent %}
+{{forms.lease_rent}}<br>
+{% endif %}
+
+
+{% if forms.number_of_persons %}
+{{forms.number_of_persons}}<br>
+{% endif %}
+
+
+
+
+{% if forms.number_of_beds %}
+{{forms.number_of_beds}}<br>
+{% endif %}
+
+
+{% if forms.num_of_rooms %}
+{{forms.num_of_rooms}}<br>
+{% endif %}
+
+
+{% if forms.num_of_bathrooms %}
+{{forms.num_of_bathrooms}}<br>
+{% endif %}
+
+
+{% if forms.balcony %}
+{{forms.balcony}}<br>
+{% endif %}
+
+{% if forms.furnished %}
+{{forms.furnished}}<br>
+{% endif %}
+
+
+
+{% if forms.admin_area %}
+{{forms.admin_area}}<br>
+{% endif %}
+
+
+{% if forms.confrence_room %}
+{{forms.confrence_room}}<br>
+{% endif %}
+
+
+{% if forms.type_of_soil %}
+{{forms.type_of_soil}}<br>
+{% endif %}
+
+{% if forms.extras %}
+{{forms.extras}}<br>
+{% endif %}
+
+
+{% if forms.rent_image %}
+<img src="{{forms.rent_image.url}}" class="img-fluid" alt="images" height="10%" width="10%"><br>
+{% endif%}
+
+
+
+
+{% if forms.rent_size_in_squrefeet %}
+{{forms.rent_size_in_squrefeet}}<br>
+{% endif %}
+
+
+{% if forms.property_acre %}
+{{forms.property_acre}}<br>
+{% endif %}
+
+{% if forms.rent_price %}
+{{forms.rent_price}}<br>
+{% endif %}
+
+{% if forms.rent_description %}
+{{forms.rent_description}}<br>
+{% endif %}
+
+
+{{forms.district}}<br><br>
+{{forms.city}}<br>
+{{forms.upload_date}}<br>  
+
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    deleteitem
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-sign-out-alt"></i>Delete</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Delete Item
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <a href="{% url 'delete_your_sale_property' forms.id %}"><button type="button" class="btn btn-primary">Delete</button></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+{% endif %}
+   
+  </div>
+
+</div> {% endcomment %}
+
+
+{% if get_property%}
+<div class="container" style="padding-top:200px;">
+  
+  <div class="row ">
+      <div class="col-md-8">
+        
+          <div class="deatils-head">
+            
+              <h1> {{get_property.property_name}},{{get_property.rent_title}}at {{get_property.district}} </h1>
+
+
+           <p> <i class="fas fa-rupee-sign"></i>{{get_property.rent_price}} {% if get_property.per_size %} {{get_property.per_size}} {%endif%}</p> 
+          </div>
+
+          {% comment %} <div class="sale">FOR sale</div> {% endcomment %}
+          
+          <div class="content">
+              <div class="second-div">
+                  <ul class="d-flex">
+                      <i class="fas fa-map-marker-alt"></i>
+                      <li>{{get_property.city}}<span class="comma">,</span> </li>
+                      <li>{{get_property.district}}<span class="comma">,</span> </li>
+                  </ul>
+              </div>
+
+          </div>
+          {% if get_property.rent_image %}
+          <img src="{{get_property.rent_image.url}}">
+          {% endif %}
+          <div class="details-para">
+              <h4>Description</h4>
+              <p>{{get_property.rent_description | safe}}</p>
+
+              <hr>
+              <h4>Facts and Features</h4>
+              <div class="deatils-fact">
+                  <ul>
+
+                      <li> <i class="fas fa-warehouse"></i>
+                          <p> {{get_property.rent_property_category}}</p>
+                      </li>
+                      <li><i class="fas fa-warehouse"></i>
+                          <p> {{get_property.reny_type_category}}</p>
+                      </li>
+                      <li> <i class="fas fa-warehouse"></i>
+                          <p> {{get_property.you_are}}</p>
+                      </li>
+                      {% if get_property.number_of_persons %}
+                      <li> <i class="fas fa-warehouse"></i>
+                          <p> Persons</p>
+                      </li>
+                      {% endif %}
+                      {% if get_property.num_of_rooms %}
+                      <li> <i class="fas fa-warehouse"></i>
+                          <p> Bedrooms</p>
+                      </li>
+                      {% endif %}
+                      {% if get_property.number_of_beds %}
+                      <li> <i class="fas fa-warehouse"></i>
+                          <p> Beds</p>
+                      </li>
+                      {% endif %}
+                      {% if get_property.num_of_bathrooms %}
+                      <li> <i class="fas fa-warehouse"></i>
+                          <p>  Bathroom</p>
+                      </li>
+                      {% endif %}
+                      {% if get_property.balcony %}
+                      <li> <i class="fas fa-warehouse"></i>
+                          <p> balcony </p>
+                      </li>
+                      {% endif %}
+                      {% if get_property.furnished == 'yes' %}
+                      <li> <i class="fas fa-warehouse"></i>
+                          <p> Furnished</p>
+                      </li>
+                      {% endif %}
+                      {% if get_property.admin_area %}
+                      <li> <i class="fas fa-warehouse"></i>
+                          <p> admin area</p>
+                      </li>
+                      {% endif %}
+                      {% if get_property.confrence_room %}
+                      <li> <i class="fas fa-warehouse"></i>
+                          <p> confrece room</p>
+                      </li>
+                      {% endif %}
+                      {% if get_property.type_of_soil %}
+                      <li> <i class="fas fa-warehouse"></i>
+                          <p> {{get_property.type_of_soil}}</p>
+                      </li>
+                      {% endif %}
+                      <li> <i class="fas fa-warehouse"></i>
+                        <p> {{get_property.upload_date}}</p>
+                    </li>
+                      
+                  </ul>
+
+              </div>
+
+              <h4>Additional Details :</h4>
+              <div class="details-additional">
+                  <table class="table">
+
+                      <tbody>
+                          <tr>
+                              <td>Property ID:
+                                  HS{{get_property.id}}</td>
+
+                              <td>For : Sale</td>
+                              <td>Title :{{get_property.rent_title}} </td>
+                             
+                          </tr>
+
+                          <tr>
+                            <td>Name :{{get_property.property_name}}</td>
+                            <td>Category : {{get_property.rent_property_category}}</td>
+                            <td>Type :{{get_property.reny_type_category}}</td>
+                        </tr>
+
+                        <tr>
+                         
+                            <td>{{get_property.rent_size_in_squrefeet}} Sqrft</td>
+                            
+                            <td>Price : <i class="fas fa-rupee-sign"></i>{{get_property.rent_price}} {% if get_property.per_size %} {{get_property.per_size}} {%endif%}</td>
+                            <td>Trogh: {{get_property.you_are }}</td>
+                        </tr>
+                        <tr>
+                            {% if get_property.approved != 'False' %}
+                            <td>Status : Verifeid </td>
+                            {% endif %}
+                           <td>Furnishing Status : {{get_property.furnished }}</td>
+                           <td>Place : {{get_property.city }}</td>
+                       
+                        </tr>
+                          <tr>
+                              
+                              <td>District : {{get_property.district }}</td>
+                              <td>Upload Date : {{get_property.upload_date }}</td>
+                              
+
+                          </tr>
+                  
+                      </tbody>
+                  </table>
+              </div>
+                {% if get_property.extras  %}
+              <h4>Amenities :</h4>
+              <div class="details-additional">
+                {% comment %} {{get_property.extras|linebreaks}} {% endcomment %}
+                {% if 'cctv' in get_property.extras %} <i class="fab fa-squarespace"></i> CCTV{% endif %} 
+                {% if 'wifi' in get_property.extras %} <i class="fab fa-squarespace"></i> WIFI{% endif %} 
+                {% if 'water' in get_property.extras %} <i class="fab fa-squarespace"></i> Water fecility{% endif %} 
+                {% if 'parking' in get_property.extras %} <i class="fab fa-squarespace"></i> Parking{% endif %} 
+                {% if 'roadFacility' in get_property.extras %} <i class="fab fa-squarespace"></i> Road fecility{% endif %} 
+                {% endif %}
+									
+                 
+              </div>
+              
+              {% for image in get_property.image.all %}
+              <img src="{{image.images.url}}" class="img-fluid" alt="images" height="10%" width="10%"><br>
+              {% endfor %}
+           
+
+          </div>
+
+      </div>
+
+
+      
+  </div>
+</div>
+
+
+
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalss">
+  deleteitem
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalss" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-sign-out-alt"></i>Delete</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Delete Item
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <a href="{% url 'delete_your_sale_property' get_property.id %}"><button type="button" class="btn btn-primary">Delete</button></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endif %}
+
+
+
+
+
+{%endblock main-content%}
+
+
+
+
+

@@ -1,0 +1,181 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{% endblock title %}about
+
+
+{%block main-content %}
+{% include 'includes/alerts.html' %}
+{% comment %} 
+<div class="tab-container">
+  <div class="tab-content"> 
+
+    <form method="POST" action="" enctype="multipart/form-data">
+      {% csrf_token %}
+            <br> <br>
+            <label for="propertyName">Property Name:</label>
+            <input type="text" id="propertyName" name="propertyName" required> <br>
+  
+            <label for="number_of_persons">Number of persons</label>
+            <input type="number" id="number_of_persons" name="number_of_persons" required><br>
+  
+            <label for="number_of_bathrooms">Number of bathrooms</label>
+            <input type="number" id="number_of_bathrooms" name="number_of_bathrooms" required><br>
+  
+            <label for="number_of_beds">Number of beds</label>
+            <input type="number" id="number_of_beds" name="number_of_beds" required><br>
+  
+            <label for="price">Price:</label>
+            <input type="number" id="price" name="price"><br>
+            <input type="file" class="form-control" name="image" multiple id="exampleFormControlInput1" required>
+            <br>
+            
+            <label for="amenities">Amenities:</label><br>
+            <input type="checkbox" id="roadFacility" name="amenities" value="roadFacility">
+            <label for="roadFacility">Road Facility</label>
+            <input type="checkbox" id="cctv" name="amenities" value="cctv">
+            <label for="cctv">CCTV</label>
+            <input type="checkbox" id="wifi" name="amenities" value="wifi">
+            <label for="wifi">WiFi</label>
+            <input type="checkbox" id="parking" name="amenities" value="parking">
+            <label for="parking">Parking</label>
+  
+            <input type="submit" value="Next">
+          </form>
+   
+  </div>
+
+</div> {% endcomment %}
+
+
+
+<br><br><br><br><br>
+<div class="container">
+  <div class="row">
+    <!-- row justify-content-center -->
+    <div class="col-md-6 mx-auto">
+      <form  method="POST" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="inputName">Property Name</label>
+            <input type="text" class="form-control"id="propertyName" name="propertyName" placeholder="Enter name" required>
+          </div>
+          <div class="form-group col-md-12">
+            <label for="inputName">Number of Persons</label>
+            <input type="number" class="form-control"id="number_of_persons" name="number_of_persons" placeholder="Number of Persons" required>
+          </div>
+          <div class="form-group col-md-12">
+            <label for="inputName">Number of Beds</label>
+            <input type="number" class="form-control" id="number_of_beds" name="number_of_beds" placeholder="Number of Persons" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-3">
+            <label for="inputState">Bathrooms</label>
+            <select id="number_of_bathrooms" name="number_of_bathrooms" class="form-control" required>
+              <option selected disabled>Choose...</option>
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+
+            </select>
+          </div>
+         
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="inputName">Description</label>
+            <textarea id="id_description" name="description" class="ckeditor"></textarea><br>
+            {% comment %} <textarea class="form-control" name="description" id="description" cols="30" rows="10" required>Description</textarea> {% endcomment %}
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputName">Property Sqft</label>
+            <input
+              type="number"
+              class="form-control"
+              id="propertySqft"
+               name="propertySqft"
+              placeholder="Enter in sqft"
+            required>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputName">Price</label>
+            <input
+              type="text"
+              class="form-control"
+              id="price"
+               name="price" 
+              placeholder="Enter property Price"
+              required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col-md-12 mb-3">
+            <label for="inputFile">Choose file</label>
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" name="image"  id="exampleFormControlInput1" required>
+              <label class="custom-file-label" for="inputFile">Choose file...</label>
+            </div>
+
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" name="images"  id="exampleFormControlInput1" multiple >
+              <label class="custom-file-label" for="inputFile"> multilple images.</label>
+            </div>
+            
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col-md-12 mb-3">
+            <label for="inputFile">Amenities</label>
+            
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="roadFacility" name="amenities" value="roadFacility">
+                <label for="roadFacility">Road Facility</label>
+              </div>
+
+              <div class="form-check">
+                <input type="checkbox" id="cctv" class="form-check-input" name="amenities" value="cctv">
+                <label for="cctv">CCTV</label>
+              </div>
+
+              <div class="form-check">
+                <input type="checkbox" id="wifi" class="form-check-input" name="amenities" value="wifi">
+                <label for="wifi">WiFi</label>
+              </div>
+
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="parking" name="amenities" value="parking">
+                <label for="parking">Parking</label>
+              </div>
+
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="water" name="amenities" value="water">
+            <label for="parking">Water</label>
+              </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Next</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  CKEDITOR.replace('id_description');
+</script>
+
+
+{%endblock main-content%}
+
+
+
+
+
+
+

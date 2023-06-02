@@ -1,0 +1,283 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{% endblock title %}about
+
+
+{%block main-content %}
+{% include 'includes/alerts.html' %}
+
+{% comment %} <div class="image-container">
+	<img src="{% static 'images/etienne-beauregard-riverin-B0aCvAVSX8E-unsplash.jpg' %}" class="img-fluid" alt="your image" width="100%">
+  </div> {% endcomment %}
+{% comment %} 
+<div class="tab-container">
+  <div class="tab-content"> 
+
+    {{form.first_name}}<br>
+    {{form.email}}<br>
+    
+    {% if form.phone_number%}
+    {{form.phone_number}}<br>
+    {% else %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        number <input type="number" name="phone_number" required>
+        <button>submit</button>
+    </form> 
+    {% endif %}
+    <br>
+    my details
+
+   
+  </div>
+
+</div> {% endcomment %}
+
+<br><br><br><br><br><br><br><br><br><br><br><br>
+<div class="container profile">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="addnewproperty">
+        <a href="{% url 'add_post' %}"><button>Post Free Add</button></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<h1>Welcome {{form.first_name}}</h1>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3 col-md-2">
+      <ul class="profile-tab nav nav-tabs">
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            data-toggle="tab"
+            href="#tab1"
+            style="color: black"
+            >Account</a
+          >
+        </li>
+
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            data-toggle="tab"
+            href="#tab2"
+            style="color: black"
+            >My Rent Properties</a
+          >
+        </li>
+
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            data-toggle="tab"
+            href="#tab3"
+            style="color: black"
+            >My Sale Properties</a
+          >
+        </li>
+
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            data-toggle="tab"
+            href="#tab4"
+            style="color: black"
+            >Logout</a
+          >
+        </li>
+      </ul>
+    </div>
+    <div class="col-sm-9 col-md-10">
+      <div class="tab-content">
+        <div id="tab1" class="tab-pane fade show active">
+          <div class="container">
+            <div class="account-details">
+              <h4>Name: {{form.first_name}}</h4>
+              <p>Email: {{form.email}}</p>
+              {% if form.phone_number%}
+              <p>Phone No: {{form.phone_number}}</p>
+              {% else %}
+                <form action="" name="myphoneform" onsubmit="return addphonenumber()" method="POST">
+                {% csrf_token %}
+              <input type="number" id="phone_number" class="form-control" placeholder="Enter Your Number" name="phone_number" required/>
+              <button type="submit" class="btn btn-primary">Submit</button>
+        </form> 
+    {% endif %}
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+
+        <div id="tab2" class="tab-pane fade">
+
+
+
+
+
+
+
+          <div class="container">
+            <h2>My Rent Property Table</h2>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Property Name</th>
+                  <th>Category Name</th>
+                  <th>Price</th>
+                  <th>Status</th>
+                  <th>More</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for f in rent_products%}
+                <tr>
+                  <td>RP{{f.id}}</td>
+                  <td>{{f.property_name}}</td>
+                  <td>{{f.reny_type_category}}</td>
+                  <td>{{f.rent_price}} {% if f.per_size %}{{f.per_size}}{% endif %} </td>
+
+                  <td>  <button> {% if f.approved%} Verifeid {% else %} Unverifeid</button>{% endif %} </td>
+                  <td><a href="{% url 'my_rent_properies' f.id %}"><button>Readmore</button></a></td>
+                </tr>
+                {% endfor %} 
+                <!-- Add more rows as needed -->
+              </tbody>
+            </table>
+          </div>
+
+
+        </div>
+
+
+
+
+
+
+
+        <div id="tab3" class="tab-pane fade">
+          
+
+
+          <div class="container">
+            <h2>My Sale Property Table</h2>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Property Name</th>
+                  <th>Category Name</th>
+                  <th>Price</th>
+                  <th>Status</th>
+                  <th>More</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for f in sale_products%}
+                <tr>
+                  <td>SP{{f.id}}</td>
+                  <td>{{f.property_name}}</td>
+                  <td>{{f.reny_type_category}}</td>
+                  <td>{{f.rent_price}} {% if f.per_size %}{{f.per_size}}{% endif %} </td>
+                  <td>  <button> {% if f.approved%} Verifeid {% else %} Unverifeid</button>{% endif %} </td>
+                  <td><a href="{% url 'my_sale_properies' f.id %}"><button>Readmore</button></a></td>
+                </tr>
+                {% endfor %} 
+                <!-- Add more rows as needed -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+
+
+        <div id="tab4" class="tab-pane fade">
+
+
+
+
+          Logout your account <button type="button" class="bg-dark text-white border" data-toggle="modal" data-target="#exampleModals" style="margin-left: 18px;">
+            Logout
+         </button>
+
+
+         <div class="modal fade" id="exampleModals" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-header">
+              
+                  <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-sign-out-alt"></i> Logout</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+                  </div>
+                  <div class="modal-body">
+                  Are You Sure Want to Logout
+                  </div>
+                  <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                  <a href="{% url 'signout' %}"><button type="button" class="btn btn-danger">Logout</button></a>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+
+
+
+
+
+          
+        </div>
+
+
+
+
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+function  addphonenumber() {
+     var phone = document.forms["myphoneform"]["phone_number"].value;
+     // Validate phone number
+     if (phone.length !== 10) {
+         alert("Phone number must be 10 digits long.");
+         return false;
+     }
+
+ }
+
+</script>
+
+{%endblock main-content%}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

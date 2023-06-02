@@ -1,0 +1,389 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{% endblock title %}about
+
+{%block main-content %}
+
+
+<div class="image-container">
+  <img src="{% static 'images/realestate.png' %}" class="img-fluid" alt="your image" width="100%">
+</div>
+
+<div class="post">
+  <a href="{% url 'add_post' %}"><button>Post Free Add</button></a>
+</div>
+<div class="tab-container">
+  <div class="tab-content">
+      <div id="tab1" class="tab-pane fade show active">
+        {% include 'includes/alerts.html' %}
+          <div class="container">
+              <form id="product-filter-formm">
+                  <div class="form-row">
+
+                      {% comment %} <div class="form-group col-md-2">+
+                          <label for="minPrice">Min Price</label>
+                          <input type="number" class="form-control" name="min_price" id="a"  placeholder="Enter Min Price">
+                      </div>
+                      <div class="form-group col-md-2">
+                          <label for="maxPrice">Max Price</label>
+                          <input type="number" class="form-control" name="max_price" id="b" placeholder="Enter Max Price">
+                      </div> {% endcomment %}
+
+                      {% comment %} <div class="form-group col-md-3">
+                          <label for="inputText">Category</label>
+                          <input type="search" class="form-control" name="rent_category_head_name" id="sale_category_head_name" placeholder="Category or property ">
+                      </div> {% endcomment %}
+
+
+
+                      <div class="form-group">
+                        <label for="selectOption">Category</label>
+                        <select class="form-control" name="rent_category_head_name" id="rent_category">
+                          <option value="" >Property for Sale</option>
+                          {% for rent_category in rent_category %}
+                          <option value="{{ rent_category.id }}">{{ rent_category.rent_property_category }}</option>
+                          {% endfor %}
+                        </select>
+                      </div>
+
+
+                      <div class="form-group">
+                        <label for="selectOption">Select Type</label>
+                        <select class="form-control" id="type" name="type">
+                          <option value="">Select Type</option>
+                        </select>
+                      </div>
+
+
+                      <div class="form-group col-md-3">
+                          <label for="inputText">Location</label>
+                          <input  class="form-control" name="rent_district_head_name" id="salesearch-input" type="search" placeholder="District or Location">
+                      </div>
+
+                      <div class="form-group col-md-2">
+                        <label for="Trogh">yOU ARE</label>
+                        <select name="trogh" id="trogh" class="form-control">
+                        <option value="" >-- You are--</option>
+                            {% for youare in you_are %}
+                          <option value="{{ youare.id }}">{{ youare.you_are }}</option>
+                         {% endfor %}
+                        </select>
+                    </div>
+                      <div class="submitbutton col-md-2">
+                          <button type="submit"  class="btn">Filter</button>
+                      </div>
+
+                  </div>
+              </form>
+          </div>
+      </div>
+
+      <div id="tab2" class="tab-pane fade">
+          <div class="container">
+         <form id ="product-filterr-form">
+                  <div class="form-row">
+                     <div class="form-group col-md-3">
+                          <label for="minPrice">Min Price</label>
+                          <input  class="form-control" name="min_price" id="a" type="number" placeholder="Enter Min Price">
+                      </div>
+                      <div class="form-group col-md-3">
+                          <label for="maxPrice">Max Price</label>
+                          <input class="form-control" name="max_price" id="a" type="number" placeholder="Enter Max Price">
+                      </div>
+
+                       
+                      {% comment %} <div class="form-group col-md-3">
+                          <label for="inputText">Category</label>
+                          <input class="form-control"  name="rent_category_head_name" id="rent_category_head_name" type="search" placeholder="Category or property">
+                      </div> 
+                      {% endcomment %}
+
+
+
+                        <div class="form-group">
+                          <label for="selectOption">Category</label>
+                          <select class="form-control" name="rent_category_head_name" id="rent_categorymode">
+                            <option value="" >Property for Sale</option>
+                            {% for rent_category in rent_category %}
+                            <option value="{{ rent_category.id }}">{{ rent_category.rent_property_category }}</option>
+                            {% endfor %}
+                          </select>
+                        </div>
+
+
+                        <div class="form-group">
+                          <label for="selectOption">Select Type</label>
+                          <select class="form-control" id="typemode" name="type">
+                            <option value="">Select Type</option>
+                          </select>
+                        </div>
+
+                                        
+                      <div class="form-group col-md-3">
+                          <label for="inputText">Location</label>
+                          <input class="form-control" name="rent_district_head_name" id="rentsearch-input" type="search" placeholder="District or Location">
+                      </div>
+
+             
+                      <div class="form-group col-md-2">
+                          <label >Select Rent Type:</label>
+                          <select id="rent_type" name="rent_type" class="form-control" >
+                              <option value="" selected disabled>Rent type</option>
+                             {% for rent_type in rent_type %}
+                              <option value="{{ rent_type.id }}">{{ rent_type.rent_type_name }}</option>
+                            {% endfor %}
+                          </select>
+                      </div>
+
+                      <div class="form-group col-md-2">
+                        <label for="Trogh">You Are</label>
+                        <select name="trogh" id="trogh" class="form-control">
+                        <option value="" selected disabled>--You are--</option>
+                            {% for youare in you_are %}
+                          <option value="{{ youare.id }}">{{ youare.you_are }}</option>
+                         {% endfor %}
+                        </select>
+                    </div>
+                      <div class="submitbutton col-md-2">
+                          <button type="submit"  class="btn">Filter</button>
+                      </div> 
+                  </div>
+              </form>
+          </div>
+      </div>   
+
+
+  </div>
+  <ul class="nav nav-tabs customisedtab">
+      <li class="nav-item">
+          <a class="nav-link active" data-toggle="tab" href="#tab1" style="color:black">Buy</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#tab2" style="color:black">Rent</a>
+      </li>
+  </ul>
+</div>
+
+<script>
+  $(document).ready(function() {
+  $('#rent_categorymode').on('change', function() {
+    var rent_categoryid = $(this).val();
+    // Make an AJAX request to get cities for the selected district
+    $.ajax({
+      url: '/get_types/', // Replace with your URL for getting cities
+      data: {
+        'rent_category_id': rent_categoryid
+      },
+      success: function(data) {
+        // Clear previous options
+        $('#typemode').empty();
+        // Add options for cities
+        $.each(data, function(key, value) {
+          $('#typemode').append('<option value="' + key + '">' + value + '</option>');
+        });
+      }
+    });
+  });
+});
+
+</script>
+
+
+
+
+<script>
+  $(document).ready(function() {
+  $('#rent_category').on('change', function() {
+    var rent_categoryid = $(this).val();
+    // Make an AJAX request to get cities for the selected district
+    $.ajax({
+      url: '/get_types/', // Replace with your URL for getting cities
+      data: {
+        'rent_category_id': rent_categoryid
+      },
+      success: function(data) {
+        // Clear previous options
+        $('#type').empty();
+        // Add options for cities
+        $.each(data, function(key, value) {
+          $('#type').append('<option value="' + key + '">' + value + '</option>');
+        });
+      }
+    });
+  });
+});
+
+</script>
+
+
+<script>
+  $(document).ready(function() {
+    $('#product-filter-formm').on('submit', function(event) {
+      event.preventDefault();
+      var formData = $(this).serialize();
+      $.ajax({
+        url: '{% url "sale_product_filter" %}',
+        type: 'GET',
+        data: formData,
+        success: function(response) {
+          $('#product-list').html(response);
+        }
+      });
+    });
+  });
+</script>
+
+<script>
+  $(document).ready(function() {
+    $('#product-filterr-form').on('submit', function(event) {
+      event.preventDefault();
+      var formData = $(this).serialize();
+      $.ajax({
+        url: '{% url "product_filter" %}',
+        type: 'GET',
+        data: formData,
+        success: function(response) {
+          $('#product-list').html(response);
+        }
+      });
+    });
+  });
+</script>
+
+
+
+<script>
+  $(function() {
+    // Define URL to fetch autocomplete data
+    var autocompleteUrl = "{% url 'locatesaleautocomplete' %}";
+
+    // Set up autocomplete for search input
+    $("#salesearch-input").autocomplete({
+      source: autocompleteUrl,
+      minLength: 1, // Minimum characters to trigger autocomplete
+    });
+  });
+</script>
+
+
+<script>
+  $(function() {
+    // Define URL to fetch autocomplete data
+    var autocompleteUrl = "{% url 'locaterentautocomplete' %}";
+
+    // Set up autocomplete for search input
+    $("#rentsearch-input").autocomplete({
+      source: autocompleteUrl,
+      minLength: 1, // Minimum characters to trigger autocomplete
+    });
+  });
+</script>
+
+ <script>
+  $(function() {
+    // Define URL to fetch autocomplete data
+    var autocompleteUrl = "{% url 'categoryrentautocomplete' %}";
+
+    // Set up autocomplete for search input
+    $("#rent_category_head_name").autocomplete({
+      source: autocompleteUrl,
+      minLength: 1, // Minimum characters to trigger autocomplete
+    });
+  });
+</script> 
+
+
+
+<script>
+  $(function() {
+    // Define URL to fetch autocomplete data
+    var autocompleteUrl = "{% url 'categorysaleautocomplete' %}";
+
+    // Set up autocomplete for search input
+    $("#sale_category_head_name").autocomplete({
+      source: autocompleteUrl,
+      minLength: 1, // Minimum characters to trigger autocomplete
+    });
+  });
+</script>
+
+{%endblock main-content%}
+
+{%block main-content-rent %}<div id="product-list"></div>
+
+ <div class="row" style="margin:0px">
+  <div class="col-md-12">
+      {% if products %}
+      <div class="productheader">
+          <h3>Best Rent Properties</h3>
+      </div>
+  </div>
+  
+  {% for product in products %}
+              <div class="col-md-4">
+                  <div class="cardcontainer">
+                      <div class="photo">
+                          {% if product.rent_image %}
+                          <a id="heart" target="_blank" href="{% url 'get_rent_property' product.id %}"><img src="{{product.rent_image.url}}"></a>
+                          {% endif %}
+                          <div class="property">{{product.reny_type_category}}</div>
+                          <div class="sale">FOR RENT</div>
+                      </div>
+                      <div class="content">
+                        <a id="heart" target="_blank" style="text-decoration: none;" href="{% url 'get_rent_property' product.id %}"><p class="txt4">{{product.reny_type_category}},{{product.rent_property_category}}</p></a>
+                          <div class="second-div">
+                              <ul class="d-flex">
+                                  <li>{{product.property_name}},{{product.rent_title}}</li>
+                                  {% comment %} <li>{{product.district}}</li> {% endcomment %}
+                              </ul>
+                              <ul class="d-flex">
+                                  <li>{{product.city}}-</li>
+                                  <li>{{product.district}}</li>
+                              </ul>
+                          </div>
+                          <div class="third-div">
+                              <ul class="d-flex">
+                                  {%if product.balcony%}
+                                  <li><i class="fab fa-squarespace"></i> balcony</li>
+                                  {% endif %}
+                                  {%if product.furnished%}
+                                  <li><i class="fab fa-squarespace"></i> furnished</li>
+                                  {% endif %}
+                        
+                                  {%if product.property_acre%}
+                                  <li><i class="fab fa-squarespace"></i>acre {{product.property_acre}}</li>
+                                  {% endif %}
+                                  {%if product.you_are%}
+                                  <li><i class="fab fa-squarespace"></i>{{product.you_are}}</li>
+                                  {% endif %}
+                              </ul>
+                          </div>
+                      </div>
+                      <div class="footer-card">
+                          <p><i class="fas fa-rupee-sign"></i> {{product.rent_price}}{% if product.per_size %} {{product.per_size}} {%endif%}  
+                              <a id="heart" target="_blank" href="{% url 'get_rent_property' product.id %}"><span class="waves-effect waves-light btn " >View Details</span></a>
+                          </p>
+                      </div>
+                  </div>
+              </div>			
+  {% endfor%}
+  {% endif %}
+</div>
+
+
+
+{%endblock main-content-rent%} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+

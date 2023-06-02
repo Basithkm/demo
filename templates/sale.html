@@ -1,0 +1,75 @@
+
+ <div class="row" style="margin:0px">
+  
+    <div class="col-md-12">
+    
+        <div class="productheader">
+            <h3>Filter Properties</h3>
+        </div>
+    </div>
+    
+    {% if products %}
+    {% for product in products %}
+                <div class="col-md-4">
+                    <div class="cardcontainer">
+                        <div class="photo">
+                            {% if product.rent_image %}
+                            <a id="heart" target="_blank" href="{% url 'get_sale_property' product.id %}"><img src="{{product.rent_image.url}}"></a>
+                            {% endif %}
+                            <div class="property">{{product.reny_type_category}}</div>
+                            <div class="sale">FOR SALE</div>
+                        </div>
+                        <div class="content">
+                            <a id="heart" target="_blank" href="{% url 'get_sale_property' product.id %}" style="text-decoration: none;"><p class="txt4">{{product.reny_type_category}},{{product.rent_property_category}}</p></a>
+                            <div class="second-div">
+                                <ul class="d-flex">
+                                    <li>{{product.property_name}},{{product.rent_title}}-</li>
+                                    {% comment %} <li>{{product.district}}</li> {% endcomment %}
+                                </ul>
+                                <ul class="d-flex">
+                                    <li>{{product.city}}-</li>
+                                    <li>{{product.district}}</li>
+                                </ul>
+                            </div>
+                            <div class="third-div">
+                                <ul class="d-flex">
+                                    {%if product.balcony%}
+                                    <li><i class="fab fa-squarespace"></i> balcony</li>
+                                    {% endif %}
+                                    {%if product.furnished%}
+                                    <li><i class="fab fa-squarespace"></i> furnished</li>
+                                    {% endif %}
+                                    {%if product.property_acre%}
+                                    <li><i class="fab fa-squarespace"></i> {{product.property_acre}}acre</li>
+                                    {% endif %}
+                                    {%if product.you_are%}
+									<li><i class="fab fa-squarespace"></i>{{product.you_are}}</li>
+									{% endif %}
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="footer-card">
+                            <p><i class="fas fa-rupee-sign"></i> {{product.rent_price}} {% if product.per_size %} {{product.per_size}} {%endif%} 
+                                <a id="heart" target="_blank" href="{% url 'get_sale_property' product.id %}"><span class="waves-effect waves-light btn " >View Details</span></a>
+                            </p>
+                        </div>
+                    </div>
+                </div>			
+    {% endfor%}
+    {%else%}
+    no products found
+    {% endif %}
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+

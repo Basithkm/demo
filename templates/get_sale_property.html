@@ -1,0 +1,301 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+ sale property {{get_property.rent_title}}
+{% endblock title %}
+
+
+{%block main-content %}
+{% include 'includes/alerts.html' %}
+
+{% if get_property%}
+<div class="container" style="padding-top:200px;">
+    <div class="row ">
+        <div class="col-md-8">
+          <div class="deatils-head">
+                <h1> {{get_property.property_name}},{{get_property.rent_title}} at {{get_property.district}} </h1>
+                <p><i class="fas fa-rupee-sign"></i>{{get_property.rent_price}} {% if get_property.per_size %} {{get_property.per_size}} {%endif%}</p> 
+          </div>
+                <div class="content">
+                    <div class="second-div ">
+                        <ul class="d-flex justify-content-between">
+                            <div class="list d-flex " >
+                                <i class="fas fa-map-marker-alt"></i>
+                                <li>{{get_property.city}}<span class="comma">,</span> </li>
+                                <li>{{get_property.district}}<span class="comma">,</span> </li>
+                            </div>
+                            <div class="verifiedbtn">{% if get_property.approved %}  <button type="button" class="btn btn-success p-2">Verifed</button>{% endif %}
+                                <button type="button" class="btn btn-secondary">{{get_property.upload_date}}</button>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+          <div class="details-image">
+            {% if get_property.rent_image %}
+              <img src="{{get_property.rent_image.url}}">
+              {% endif %}
+          </div>
+            <div class="details-para">
+              <h4>Description</h4>
+              <p>{{get_property.rent_description | safe}}</p>
+              <hr>
+              <h4>Facts and Features </h4>
+                <div class="deatils-fact">
+                  <ul>
+                      <li> <i class="fas fa-warehouse"></i>
+                          <p> {{get_property.rent_property_category}}</p>
+                      </li>
+                      <li><i class="fas fa-warehouse"></i>
+                          <p> {{get_property.reny_type_category}}</p>
+                      </li>
+                      <li> <i class="fas fa-warehouse"></i>
+                          <p> {{get_property.you_are}}</p>
+                      </li>
+                      {% if get_property.number_of_persons %}
+                      <li> <i class="fas fa-warehouse"></i>
+                          <p> Persons</p>
+                      </li>
+                      {% endif %}
+                      {% if get_property.num_of_rooms %}
+                      <li> <i class="fas fa-warehouse"></i>
+                          <p> Bedrooms</p>
+                      </li>
+                      {% endif %}
+                      {% if get_property.number_of_beds %}
+                      <li> <i class="fas fa-warehouse"></i>
+                          <p> Beds</p>
+                      </li>
+                      {% endif %}
+                      {% if get_property.num_of_bathrooms %}
+                      <li> <i class="fas fa-warehouse"></i>
+                          <p>  Bathroom</p>
+                      </li>
+                      {% endif %}
+                      {% if get_property.balcony %}
+                      <li> <i class="fas fa-warehouse"></i>
+                          <p> balcony </p>
+                      </li>
+                      {% endif %}
+                      {% if get_property.furnished == 'yes' %}
+                      <li> <i class="fas fa-warehouse"></i>
+                          <p> Furnished</p>
+                      </li>
+                      {% endif %}
+                      {% if get_property.admin_area %}
+                      <li> <i class="fas fa-warehouse"></i>
+                          <p> admin area</p>
+                      </li>
+                      {% endif %}
+                      {% if get_property.confrence_room %}
+                      <li> <i class="fas fa-warehouse"></i>
+                          <p> confrece room</p>
+                      </li>
+                      {% endif %}
+                      {% if get_property.type_of_soil %}
+                      <li> <i class="fas fa-warehouse"></i>
+                          <p> {{get_property.type_of_soil}}</p>
+                      </li>
+                      {% endif %}
+                      <li> <i class="fas fa-warehouse"></i>
+                        <p> {{get_property.upload_date}}</p>
+                    </li>
+                      
+                  </ul>
+
+                </div>
+
+              <h4>Additional Details :</h4>
+                <div class="details-additional">
+                  <table class="table">
+
+                      <tbody>
+                          <tr>
+                              <td>Property ID:
+                                  SP{{get_property.id}}</td>
+
+                              <td>For : Sale</td>
+                              <td>Title :{{get_property.rent_title}} </td>
+                             
+                          </tr>
+
+                          <tr>
+                            <td>Name :{{get_property.property_name}}</td>
+                            <td>Category : {{get_property.rent_property_category}}</td>
+                            <td>Type :{{get_property.reny_type_category}}</td>
+                        </tr>
+
+                        <tr>
+                         
+                            <td>{{get_property.rent_size_in_squrefeet}} Sqrft</td>
+                            
+                            <td>Price : <i class="fas fa-rupee-sign"></i>{{get_property.rent_price}} {% if get_property.per_size %} {{get_property.per_size}} {%endif%}</td>
+                            <td>Trogh: {{get_property.you_are }}</td>
+                        </tr>
+                        <tr>
+                            {% if get_property.approved != 'False' %}
+                            <td>Status : Verifeid </td>
+                            {% endif %}
+                           <td>Furnishing Status : {{get_property.furnished }}</td>
+                           <td>Place : {{get_property.city }}</td>
+                       
+                        </tr>
+                          <tr>
+                              
+                              <td>District : {{get_property.district }}</td>
+                              <td>Upload Date : {{get_property.upload_date }}</td>
+                              
+
+                          </tr>
+                  
+                      </tbody>
+                  </table>
+                </div>
+                {% if get_property.extras  %}
+                        <h4>Amenities :</h4>
+                    <div class="details-additional">
+                        {% comment %} {{get_property.extras|linebreaks}} {% endcomment %}
+                        {% if 'cctv' in get_property.extras %} <i class="fab fa-squarespace"></i> CCTV{% endif %} 
+                        {% if 'wifi' in get_property.extras %} <i class="fab fa-squarespace"></i> WIFI{% endif %} 
+                        {% if 'water' in get_property.extras %} <i class="fab fa-squarespace"></i> Water fecility{% endif %} 
+                        {% if 'parking' in get_property.extras %} <i class="fab fa-squarespace"></i> Parking{% endif %} 
+                        {% if 'roadFacility' in get_property.extras %} <i class="fab fa-squarespace"></i> Road fecility{% endif %} 
+                        {% endif %} 
+                    </div>
+
+                    {% for image in get_property.image.all %}
+                    <img src="{{image.images.url}}" class="img-fluid" alt="images" height="10%" width="10%"><br>
+                    {% endfor %}
+            </div>
+        </div>
+
+      <div class="col-md-4">
+        <div class="detail-form">
+            <form action="" method="POST">
+              {%csrf_token%}
+                  <div class="col-md-12">
+                      <div class="productheader">
+                          <h3>Contact Details</h3>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label for="name">Your FullName</label>
+                      <input type="text" name="full_name" class="form-control" id="name" required>
+                  </div>
+                  <div class="form-group">
+                      <label for="email">Enter Your Email</label>
+                      <input type="email" name="email" class="form-control" id="email">
+                  </div>
+                  <div class="form-group">
+                      <label for="number">Enter Your Number</label>
+                      <input type="number" name="phone" class="form-control" id="number">
+                  </div>
+                  <div class="form-group">
+                    <select  class="form-control" id="intrest" name="intrest" required>
+                      <option value="">please select your intrest</option>
+                        <option value="immieaduite_purchase">immieaduite purchase</option>
+                        <option value="site_visit">site visit</option>
+                        <option value="call_back">call back</option>
+                      </select>
+                </div>
+                  <div class="detail-from-button">
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                  </div>
+            </form>
+        </div>
+      </div>
+
+      {% if other_property %}
+<div class="row" style="margin:0px">
+    <div class="col-md-12">
+        
+        <div class="productheader">
+            <h3>Related Properties</h3>
+        </div>
+    </div>
+    
+    {% for product in other_property %}
+                <div class="col-md-4">
+                    <div class="cardcontainer">
+                        <div class="photo">
+                            {% if product.rent_image %}
+                            <a id="heart" target="_blank" href="{% url 'get_sale_property' product.id %}"><img src="{{product.rent_image.url}}"></a>
+                            {% endif %}
+                            <div class="property">{{product.reny_type_category}}</div>
+                            <div class="sale">FOR SALE</div>
+                        </div>
+                        <div class="content">
+                            <a id="heart" target="_blank" href="{% url 'get_sale_property' product.id %}" style="text-decoration: none;"><p class="txt4">{{product.reny_type_category}},{{product.rent_property_category}}</p></a>
+                            <div class="second-div">
+                                <ul class="d-flex">
+                                    <li>{{product.property_name}},{{product.rent_title}}-</li>
+                                    {% comment %} <li>{{product.district}}</li> {% endcomment %}
+                                </ul>
+                                <ul class="d-flex">
+                                    <li>{{product.city}}-</li>
+                                    <li>{{product.district}}</li>
+                                </ul>
+                            </div>
+                            <div class="third-div">
+                                <ul class="d-flex">
+                                    {%if product.balcony%}
+                                    <li><i class="fab fa-squarespace"></i> balcony</li>
+                                    {% endif %}
+                                    {%if product.furnished%}
+                                    <li><i class="fab fa-squarespace"></i> furnished</li>
+                                    {% endif %}
+
+                                    {%if product.property_acre%}
+                                    <li><i class="fab fa-squarespace"></i> {{product.property_acre}}acre</li>
+                                    {% endif %}
+                                    {%if product.monthly_rent%}
+									<li><i class="fab fa-squarespace"></i>Monthly</li>
+									{% endif %}
+								    {%if product.daily_rent%}
+									<li><i class="fab fa-squarespace"></i>Daily</li>
+									{% endif %}
+									{%if product.lease_rent%}
+									<li><i class="fab fa-squarespace"></i>Lease</li>
+									{% endif %}
+                                    {%if product.you_are%}
+									<li><i class="fab fa-squarespace"></i>{{product.you_are}}</li>
+									{% endif %}
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="footer-card">
+                            <p><i class="fas fa-rupee-sign"></i>{{product.rent_price}} {% if product.per_size %} {{product.per_size}} {%endif%}
+                                <a id="heart" target="_blank" href="{% url 'get_sale_property' product.id %}"><span class="waves-effect waves-light btn " >View Details</span></a>
+                            </p>
+                        </div>
+                    </div>
+                </div>			
+    {% endfor%}
+   
+    {% endif %}
+</div>
+
+
+
+
+
+
+
+
+  </div>
+</div>
+{% endif %}
+{%endblock main-content%}
+
+
+
+
+
+
+
+
+
+
+
+
+

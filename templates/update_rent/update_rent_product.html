@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{% endblock title %}about
+
+{%block main-content %} 
+
+
+<div class="container">
+
+    <br><br><br><br>
+    <h2>Real Estate Item Adding  rent  Form</h2>
+    <form method="POST" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label>Title</label>
+        <input type="text" placeholder="Title" name="name" value="{{f.rent_title}}" required>
+        <br> <br>
+        <select name="rent_category" id="rent_category" required>
+          <option value="">Property for Rent</option>
+         {% for rent_category in rent_property_category  %}
+            <option value="{{ rent_category.id }}">{{ rent_category.rent_property_category }}</option>
+          {% endfor %} 
+        </select>
+          <label for="type">Select Type:</label>
+          <select id="type" name="type">
+            <option value="">{{f.reny_type_category}}</option>
+          </select>
+   
+        
+
+          <br> <br>
+        <!-- <select name="rent_type" required>
+            <option value="" >Select Rent Category</option>
+            {% for rent_type in rent_type %}
+              <option value="{{ rent_type.id }}">{{ rent_type.rent_type_name }}</option>
+            {% endfor %}
+          </select> -->
+
+          
+
+
+          <!-- <br> <br>
+          <select name="you_are" required>
+            <option value="">You Are</option>
+            {% for youare in youare %}
+              <option value="{{ youare.id }}">{{ youare.you_are }}</option>
+            {% endfor %}
+          </select>
+            <br> <br> -->
+
+
+        <label for="district">District:</label>
+        <select id="district" name="district">
+          <option value="">Select District</option>
+          {% for district in  district %}
+            <option value="{{ district.id }}">{{ district.district_name }}</option>
+          {% endfor %}
+        </select>
+       
+        <label for="city">City:</label>
+        <select id="city" name="city">
+          <option value="" selected disabled>{{f.city}}</option>
+        </select>
+
+
+          <br> <br>
+          <!-- <input type="text" placeholder="name" name="name" required> -->
+          <!-- <br> <br>
+          <label for="exampleFormControlInput1" class="form-label">Upload Your Photo</label>
+          <br> <br>
+          <input type="file" class="form-control" name="image" id="exampleFormControlInput1" required >
+          <br> <br>
+          <input type="number" placeholder="size" name="size" required>
+          <br> <br>
+          <input type="number" placeholder="price" name="price" required>
+          <br> <br>
+          <input type="text" name="desc" placeholder="description" id="" required> -->
+        
+        <button>Submit</button>
+      </form>
+
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script>
+      $(document).ready(function() {
+        // When district dropdown value changes
+        $('#district').on('change', function() {
+          var districtId = $(this).val();
+          // Make an AJAX request to get cities for the selected district
+          $.ajax({
+            url: '/get_cities/', // Replace with your URL for getting cities
+            data: {
+              'district_id': districtId
+            },
+            success: function(data) {
+              // Clear previous options
+              $('#city').empty();
+              // Add options for cities
+              $.each(data, function(key, value) {
+                $('#city').append('<option value="' + key + '">' + value + '</option>');
+              });
+            }
+          });
+        });
+      });
+      </script>
+      <script>
+        $(document).ready(function() {
+        $('#rent_category').on('change', function() {
+          var rent_categoryid = $(this).val();
+          // Make an AJAX request to get cities for the selected district
+          $.ajax({
+            url: '/get_types/', // Replace with your URL for getting cities
+            data: {
+              'rent_category_id': rent_categoryid
+            },
+            success: function(data) {
+              // Clear previous options
+              $('#type').empty();
+              // Add options for cities
+              $.each(data, function(key, value) {
+                $('#type').append('<option value="' + key + '">' + value + '</option>');
+              });
+            }
+          });
+        });
+      });
+     
+      </script>
+      
+
+
+{%endblock main-content%}

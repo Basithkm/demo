@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{% endblock title %}add post
+
+{%block main-content %} 
+<br><br><br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Select</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 my-4">
+            <a style="text-decoration:none;color:inherit;" href="{% url 'post_free_add_property_for_sale' %}"> 
+                <div class="card">
+                    <img class="card-img-top" src="https://via.placeholder.com/350x200.png?text=Property+1" alt="Property 1">
+                    <div class="card-body">
+                    <h5 class="card-title" style="text-align:center">Property for sale</h5>
+                    </div>
+                </div>
+            </a> 
+        </div>
+        <div class="col-md-6 my-4">
+            <a style="text-decoration:none;color:inherit;" href="{% url 'post_free_add_property_for_rent' %}"> 
+                <div class="card">
+                    <img class="card-img-top" src="https://via.placeholder.com/350x200.png?text=Property+1" alt="Property 1">
+                    <div class="card-body">
+                        <h5 class="card-title" style="text-align:center">Property for Rent</h5>
+                    </div>
+                </div>
+            </a> 
+        </div>
+    </div>
+</div>
+
+
+{%endblock main-content%}

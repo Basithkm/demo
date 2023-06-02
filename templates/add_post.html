@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{% endblock title %}about
+{%block main-content %}
+{% include 'includes/alerts.html' %}
+
+<br><br><br><br><br><br><br>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="saleproperty">
+        <a href="{% url 'post_free_add_property_for_sale' %}"><img src="{% static 'images/forsale.png' %}" alt="" /></a>  
+        <a href="{% url 'post_free_add_property_for_sale' %}" style="color: inherit;text-decoration: none;"  ><h4>Add Sale Post</h4></a>
+      </div>
+      
+    </div>
+    <div class="col-md-6">
+      <div class="rent">
+        <a href="{% url 'post_free_add_property_for_rent' %} "><img src="{% static 'images/forrent.png' %}" alt="" /></a>
+        <a  href="{% url 'post_free_add_property_for_rent' %}" style="color: inherit; text-decoration: none;"><h4>Add Rent Post</h4></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br><br><br><br><br><br><br><br><br><br>
+
+{%endblock main-content%}
+

@@ -1,0 +1,64 @@
+
+
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{% endblock title %}about
+
+
+{%block main-content %}
+{% include 'includes/alerts.html' %}
+
+{% comment %} <div class="tab-container">
+  <div class="tab-content"> 
+
+
+    <form method="POST" action="" enctype="multipart/form-data">
+      {% csrf_token %}
+   <select name="rent_type" required>
+          <option value="" >Select Rent Category</option>
+          {% for rent_type in rent_type %}
+            <option value="{{ rent_type.id }}">{{ rent_type.rent_type_name }}</option>
+          {% endfor %}
+        </select>
+      <input type="submit" value="Next">
+      </form>
+  </div>
+
+</div> {% endcomment %}
+
+<br><br><br><br><br><br><br><br><br><br>
+<div class="container">
+  <div class="row">
+    <!-- row justify-content-center -->
+    <div class="col-md-6 mx-auto">
+      <form  method="POST" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+       
+        <div class="form-row">
+          
+          
+          <div class="form-group col-md-3">
+            <label for="inputState">Rent Type</label>
+            <select name="rent_type"  class="form-control" required>
+              <option value="">Rent Type</option>
+              {% for rent_type in rent_type %}
+              <option value="{{ rent_type.id }}">{{ rent_type.rent_type_name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+  </div>
+</div>
+</div>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+{%endblock main-content%}
+
+
+
+
+
+
+

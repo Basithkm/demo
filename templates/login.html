@@ -1,0 +1,105 @@
+
+
+  {% extends 'base.html' %}
+{% load static %}
+{% block title %}{% endblock title %}about
+
+{% load i18n %}
+{% load account %}
+
+{% load socialaccount %}
+{% providers_media_js %} 
+
+{%block main-content %}
+
+ {% comment %} <div class="image-container">
+	<img src="{% static 'images/pexels-gernot-brauchle-15243571.jpg' %}" class="img-fluid" alt="your image" width="100%">
+  </div> {% endcomment %}
+
+
+ <br> <br> <br> <br> <br> <br> <br> <br> <br>
+  <div class="container">
+    {% include 'includes/alerts.html' %}
+    
+    <div class="row">
+      <!-- row justify-content-center -->
+      <div class="col-md-6 mx-auto">
+        <h1>Login</h1>
+        <form  method="POST">
+          {% csrf_token %}
+          <div class="form-row">
+            <div class="form-group col-md-12">
+              <label for="inputName">Emial</label>
+              <input type="email" class="form-control"  name="email" placeholder="Email" required>
+              <label for="inputName">Password</label>
+              <input type="password" class="form-control"  name="password" placeholder="Password" required>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Sumbit</button>
+        </form>
+        <div>Dont't have an account? <span><a href="{% url 'register' %}">register</a></span></div>
+        <form method="POST" action="{% url 'account_reset_password' %}" class="password_reset">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <input type="submit" class="btn btn-danger" value="{% trans 'Reset My Password' %}" />
+      </form>
+      <a href="{% provider_login_url 'google' %}">Log in with Google</a>
+      </div>
+      
+    </div>
+  </div>
+
+
+  <br> <br> <br> <br> <br> <br> <br> <br> <br>
+
+
+
+
+
+ {% comment %} <div class="tab-container">
+  <div class="tab-content"> 
+    {% include 'includes/alerts.html' %}
+    <form action="" method="post">
+      {% csrf_token %}
+      <input type="email" class="form-control" name="email" placeholder="email">
+      <input type="password" class="form-control" name="password" placeholder="password">
+      <div>Dont't have an account? <span><a href="{% url 'register' %}">register</a></span></div>
+      <input type="submit" class="btn btn-primary">
+  </form>
+    <div>
+    <br>
+
+  
+
+      {% if user.is_authenticated %}
+      {% include "account/snippets/already_logged_in.html" %}
+      {% endif %}
+  
+     
+      <form method="POST" action="{% url 'account_reset_password' %}" class="password_reset">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <input type="submit" class="btn btn-danger" value="{% trans 'Reset My Password' %}" />
+      </form>
+  
+    
+  
+    
+    <a href="{% provider_login_url 'google' %}">Log in with Google</a>
+    <br>
+
+     
+  
+    </div>
+
+   
+  </div>
+
+</div>  {% endcomment %}
+
+{%endblock main-content%}
+
+
+
+
+
